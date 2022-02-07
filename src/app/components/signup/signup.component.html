@@ -1,0 +1,46 @@
+<div class="">
+  <div class="">
+    <p class="fs-title">HackIdea Registration</p>
+
+    <p class="fs-subtitle">Please fillout the form below to get started.</p>
+  </div>
+  <form id="msform" [formGroup]="signUpForm" autocomplete="off">
+    <fieldset>
+      <h2 class="fs-title">Create your account</h2>
+      <h3 class="fs-subtitle">Please fill out these details:</h3>
+      <input
+        formControlName="userName"
+        type="text"
+        name="name"
+        placeholder="Name"
+      />
+      <input
+        formControlName="empId"
+        type="number"
+        name="empId"
+        placeholder="EmpId"
+      />
+      <input
+        formControlName="email"
+        type="text"
+        name="email"
+        placeholder="Email"
+      />
+      <input
+        formControlName="contact"
+        type="number"
+        name="contact"
+        placeholder="Contact Number"
+      />
+
+      <button
+        type="submit"
+        name="next"
+        class="next action-button"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</div>
