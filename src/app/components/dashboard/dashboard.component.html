@@ -1,0 +1,24 @@
+<div>
+  <p class="h1">Dashboard</p>
+  <hr />
+  <div *ngIf="ideas.length > 0">
+    <div *ngFor="let items of ideas; let key = index">
+      <div class="ideas d-flex flex-row">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">{{ items.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">
+              {{ items.description }}
+            </p>
+            <a href="#" class="card-link">{{ items.upVotes }}Up Vote</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+        <div class="ms-5">
+          {{ items.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
