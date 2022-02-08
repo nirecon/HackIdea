@@ -1,8 +1,11 @@
 <div class="content" role="main">
   <!-- Highlight Card -->
   <div class="toolbar" role="banner">
-    <a href="javascript:void(0)" class="ms-3" (click)="takeHome()">Hack Idea</a>
+    <div href="javascript:void(0)" class="ms-3" (click)="takeHome()">
+      Hack Idea
+    </div>
     <div class="spacer"></div>
+    <div *ngIf="isLoggedIn">Hi {{ user.userName }}</div>
     <div
       href="javascript:void(0)"
       *ngIf="!isLoggedIn"
@@ -11,20 +14,15 @@
     >
       Signup
     </div>
-    <a
+    <div
       href="javascript:void(0)"
       *ngIf="!isLoggedIn"
       class="me-5"
       (click)="redirect()"
-      >Login</a
     >
-    <a
-      href="javascript:void(0)"
-      *ngIf="isLoggedIn"
-      class="me-5"
-      (click)="logout()"
-      >Logout</a
-    >
+      Login
+    </div>
+    <div *ngIf="isLoggedIn" class="ms-5 me-5" (click)="logout()">Logout</div>
   </div>
 </div>
 <router-outlet></router-outlet>

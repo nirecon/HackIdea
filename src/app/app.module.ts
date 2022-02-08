@@ -11,6 +11,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBr9Nv6ys65vH4NK6glTjWZsfatewEX9Zw',
@@ -31,8 +33,15 @@ export const db = getDatabase(app);
     DashboardComponent,
     LandingPageComponent,
     SignupComponent,
+    AddItemComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

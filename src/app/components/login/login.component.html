@@ -2,8 +2,9 @@
   <fieldset>
     <h2 class="fs-title">Login to your account</h2>
     <h3 class="fs-subtitle">Enter your Empid and click on submit</h3>
-    <input type="number" name="empid" placeholder="EmpId" />
-
+    <input [(ngModel)]="empId" type="number" name="empid" placeholder="EmpID" />
+    <label *ngIf="error" style="color: red">{{ errorText }}</label
+    ><br />
     <button
       type="button"
       name="submit"
