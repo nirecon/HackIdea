@@ -1,48 +1,20 @@
 import { Injectable } from '@angular/core';
-import {
-  getDatabase,
-  ref,
-  onValue,
-  runTransaction,
-  set,
-  get,
-} from 'firebase/database';
+import { Router } from '@angular/router';
+import { getDatabase, ref, set, get } from 'firebase/database';
 import { Subject } from 'rxjs';
+import { LoginServices } from './login-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataServices {
-  db = getDatabase();
   ideasList = new Subject<any>();
   idesList$ = this.ideasList.asObservable();
-  constructor() {}
+  constructor(private loginservice: LoginServices, private router: Router) {}
 
-  getIdeas() {
-    onValue(ref(this.db, '/ideas/'), (snapshot) => {
-      const ideas = snapshot.val().map((x: any) => x);
-      this.ideasList.next(ideas);
-    });
-  }
-
-  addIdeas(uid: any) {
-    const postRef = ref(this.db, '/ideas/');
-
-    runTransaction(postRef, (post) => {
-      if (post) {
-        if (post.ideaid && post.ideaid[uid]) {
-          post.starCount--;
-          post.stars[uid] = null;
-        } else {
-          post.starCount++;
-          if (!post.stars) {
-            post.stars = {};
-          }
-          post.stars[uid] = true;
-        }
-      }
-      return post;
-    });
+  getUserInfo(value: any) {
+    const db = getDatabase();
+    return get(ref(db, 'user/' + value));
   }
 
   writeUserData(value: any) {
@@ -55,10 +27,10 @@ export class DataServices {
           email: value.email,
           contact: value.contact,
         }).then((resp) => {
-          alert('User created');
+          this.router.navigateByUrl('login');
         });
       } else {
-        alert('the userId exists');
+        alert('UserId already exits');
       }
     });
   }

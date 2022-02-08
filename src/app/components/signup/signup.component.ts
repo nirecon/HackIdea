@@ -22,8 +22,6 @@ export class SignupComponent implements OnInit {
     if (this.signUpForm.valid) {
       var value = this.signUpForm.getRawValue();
       this.dataService.writeUserData(value);
-    } else {
-      alert('the form is invalid');
     }
   }
 }

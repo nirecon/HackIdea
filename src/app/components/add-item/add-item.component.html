@@ -1,0 +1,41 @@
+<div class="">
+  <div class="text-center">
+    <p class="fs-title">HackIdea Idea Registration</p>
+
+    <p class="fs-subtitle">
+      Please fillout the form to add new idea to the list.
+    </p>
+  </div>
+  <form id="msform" [formGroup]="ideaForm" autocomplete="off">
+    <fieldset>
+      <h2 class="fs-title">Add a new Idea</h2>
+      <h3 class="fs-subtitle">Please fill out these details:</h3>
+      <input
+        formControlName="title"
+        type="text"
+        name="title"
+        placeholder="Idea Title"
+      />
+      <textarea
+        formControlName="description"
+        name="description"
+        placeholder="Description"
+      >
+      </textarea>
+
+      <button
+        type="submit"
+        name="next"
+        class="next action-button"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+      <br />
+
+      <button type="button" (click)="back()" class="btn peach-gradient">
+        Go To Dashboard
+      </button>
+    </fieldset>
+  </form>
+</div>

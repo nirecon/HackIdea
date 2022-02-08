@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginServices } from './services/login-service.service';
 
@@ -9,12 +9,13 @@ import { LoginServices } from './services/login-service.service';
 })
 export class AppComponent {
   isLoggedIn: boolean = false;
+  user: any;
   constructor(private router: Router, private loginServices: LoginServices) {
     this.loginServices.isLoggedIn$.subscribe((x) => {
+      this.user = this.loginServices.getUserInfo();
       this.isLoggedIn = x;
     });
   }
-
   redirect() {
     this.router.navigateByUrl('login');
   }

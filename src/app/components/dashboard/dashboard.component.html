@@ -1,22 +1,66 @@
 <div>
-  <p class="h1">Dashboard</p>
-  <hr />
-  <div *ngIf="ideas.length > 0">
-    <div *ngFor="let items of ideas; let key = index">
-      <div class="ideas d-flex flex-row">
-        <div class="card" style="width: 18rem">
-          <div class="card-body">
-            <h5 class="card-title">{{ items.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">
-              {{ items.description }}
-            </p>
-            <a href="#" class="card-link">{{ items.upVotes }}Up Vote</a>
-            <a href="#" class="card-link">Another link</a>
+  <p class="h1 mb-5" style="margin-left: 6rem">Dashboard</p>
+
+  <div>
+    <div class="ms-5 me-5">
+      <div class="d-flex flex-row ms-5 me-5">
+        <button
+          class="btn btn-secondary ms-2"
+          type="button"
+          (click)="addIdea()"
+        >
+          Add Idea
+        </button>
+
+        <button
+          class="btn btn-secondary ms-5"
+          type="button"
+          id="dropdownMenuButton1"
+          (click)="sortByUpVotes()"
+        >
+          Sort By upvotes
+        </button>
+
+        <button
+          class="btn btn-secondary ms-5"
+          type="button"
+          id="dropdownMenuButton1"
+          (click)="sortByCreatedOn()"
+        >
+          Sort By created On
+        </button>
+      </div>
+
+      <div *ngIf="ideas.length > 0">
+        <div *ngFor="let item of ideas; trackBy: trackByFn">
+          <div class="ideas d-flex flex-row ms-5 me-5">
+            <div class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              </div>
+            </div>
+            <div class="ms-5">
+              <div>{{ item.description }}</div>
+
+              <div>
+                <a
+                  *ngIf="!item.voted"
+                  href="javascript:void(0)"
+                  class="btn btn-secondary"
+                  (click)="upVote(1, item.ideaId)"
+                  >{{ item.upVotes }}Up Vote</a
+                >
+                <a
+                  *ngIf="item.voted"
+                  href="javascript:void(0)"
+                  class="btn btn-primary"
+                  (click)="upVote(-1, item.ideaId)"
+                  >{{ item.upVotes }}Up Vote</a
+                >
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="ms-5">
-          {{ items.description }}
         </div>
       </div>
     </div>
