@@ -24,7 +24,10 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user = this.loginService.getUserInfo();
+    this.user = localStorage.getItem('userInfo');
+    if (!this.user) {
+      this.user = this.loginService.getUserInfo();
+    }
     this.fetchAllIdeas();
   }
 

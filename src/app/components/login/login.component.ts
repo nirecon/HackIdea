@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
         if (Response.val()) {
           this.loginServices.changeUserInfo(Response.val());
           this.loginServices.changeIsLoggedIn(true);
-
+          localStorage.setItem('isloggedIn', 'true');
+          localStorage.setItem('userInfo', Response.val());
           this.router.navigateByUrl('dashboard');
         } else {
           this.setError("EmpId doesn't exists.");
